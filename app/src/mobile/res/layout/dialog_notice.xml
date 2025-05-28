@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/shape_bottom_radius"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_shan"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="left"
+        android:lineSpacingExtra="5dp"
+        android:textColor="#A3A8AD"
+        android:textSize="13sp"
+        tools:ignore="RtlHardcoded"
+        tools:text="1. 新增 ffmpeg 音頻軟解\n2. 詳情頁新增分詞快搜\n3. 修復搜尋閃退問題\n4. 設定支援渲染切換" />
+
+    <TextView
+        android:id="@+id/hide_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="不再提醒>"
+        android:textColor="#A3A8AD"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/close"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_recharge_amount4"
+        android:gravity="center"
+        android:text="我知道了"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+</LinearLayout>

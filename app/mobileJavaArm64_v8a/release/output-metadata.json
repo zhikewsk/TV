@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.fongmi.android.tv",
+  "variantName": "mobileJavaArm64_v8aRelease",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 237,
+      "versionName": "2.3.7",
+      "outputFile": "mobile-java-arm64_v8a.apk"
+    }
+  ],
+  "elementType": "File"
+}

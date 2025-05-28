@@ -1,0 +1,199 @@
+plugins {
+    id 'com.android.application'
+}
+//com.fongmi.android.tv
+android {
+    namespace 'com.fongmi.android.tv'
+
+    compileSdk 34
+    flavorDimensions = ["mode", "api", "abi"]
+
+    defaultConfig {
+        applicationId "com.fongmi.android.tv"
+        minSdk 21
+        //noinspection ExpiredTargetSdkVersion
+        targetSdk 28
+        versionCode 237
+        versionName "2.3.7"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+        externalNativeBuild {
+            cmake {
+                cppFlags ''
+            }
+        }
+    }
+
+    productFlavors {
+        leanback {
+            dimension "mode"
+        }
+        mobile {
+            dimension "mode"
+        }
+        java {
+            dimension "api"
+        }
+        python {
+            dimension "api"
+        }
+        x86 {
+            dimension "abi"
+            ndk { abiFilters "x86" }
+        }
+        arm64_v8a {
+            dimension "abi"
+            ndk { abiFilters "arm64-v8a" }
+        }
+        armeabi_v7a {
+            dimension "abi"
+            ndk { abiFilters "armeabi-v7a" }
+        }
+    }
+
+    buildFeatures {
+        buildConfig true
+        viewBinding true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("default.jks")
+            storePassword "default"
+            keyAlias "default"
+            keyPassword "default"
+        }
+    }
+
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/beans.xml'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    android.applicationVariants.configureEach { variant ->
+        variant.outputs.configureEach { output ->
+            outputFileName = "${variant.productFlavors[0].name}-${variant.productFlavors[1].name}-${variant.productFlavors[2].name}.apk"
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        if (variant.buildType.name == 'release' && variant.productFlavors[0].name == 'mobile') {
+            variant.mergeAssets.doLast {
+                delete(fileTree(dir: variant.mergeAssets.outputDir, includes: ['x5.tbs.apk']))
+            }
+        }
+    }
+
+    configurations.configureEach {
+        resolutionStrategy {
+            force 'com.squareup.okhttp3:okhttp:' + okhttpVersion
+        }
+    }
+
+    lint {
+        disable 'UnsafeOptInUsageError'
+    }
+}
+
+dependencies {
+    implementation project(':hook')
+    implementation project(':tvbus')
+    implementation project(':catvod')
+    implementation project(':quickjs')
+    implementation project(':thunder')
+    implementation project(':youtube')
+    implementation project(':jianpian')
+    implementation project(':forcetech')
+    implementation project(':ijkplayer')
+    implementation 'androidx.media3:media3-datasource-okhttp:' + media3Version
+    implementation 'androidx.media3:media3-datasource-rtmp:' + media3Version
+    implementation 'androidx.media3:media3-exoplayer:' + media3Version
+    implementation 'androidx.media3:media3-exoplayer-dash:' + media3Version
+    implementation 'androidx.media3:media3-exoplayer-hls:' + media3Version
+    implementation 'androidx.media3:media3-exoplayer-rtsp:' + media3Version
+    implementation 'androidx.media3:media3-exoplayer-smoothstreaming:' + media3Version
+    implementation 'androidx.media3:media3-ui:' + media3Version
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.biometric:biometric:1.1.0'
+    implementation 'androidx.room:room-runtime:2.6.1'
+    implementation 'androidx.media:media:1.7.0'
+    implementation 'cat.ereza:customactivityoncrash:2.4.0'
+    implementation 'com.github.bassaer:materialdesigncolors:1.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    implementation 'com.github.bumptech.glide:annotations:4.16.0'
+//    implementation 'com.github.bumptech.glide:okhttp3-integration:4.16.0'
+    implementation ('com.github.bumptech.glide:okhttp3-integration:4.16.0') {
+        exclude group: 'com.squareup.okhttp3', module: 'logging-interceptor'
+    }
+    implementation 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
+    implementation 'com.github.jahirfiquitiva:TextDrawable:1.0.3'
+    implementation('com.github.teamnewpipe:NewPipeExtractor:0.24.6') { exclude group: 'org.jsoup', module: 'jsoup' }
+    implementation 'com.github.thegrizzlylabs:sardine-android:0.9'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.google.net.cronet:cronet-okhttp:0.1.0'
+    implementation 'com.google.zxing:core:3.3.0'
+    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
+    implementation 'com.hierynomus:smbj:0.13.0'
+    implementation 'com.tencent.tbs:tbssdk:44286'
+    implementation 'com.github.YarikSOffice:lingver:1.3.0'
+    implementation 'javax.servlet:javax.servlet-api:3.1.0'
+    implementation 'org.chromium.net:cronet-embedded:76.3809.111'
+    implementation 'org.eclipse.jetty:jetty-client:8.1.21.v20160908'
+    implementation 'org.eclipse.jetty:jetty-server:8.1.21.v20160908'
+    implementation 'org.eclipse.jetty:jetty-servlet:8.1.21.v20160908'
+    implementation 'org.fourthline.cling:cling-core:2.1.1'
+    implementation 'org.fourthline.cling:cling-support:2.1.1'
+    implementation 'org.greenrobot:eventbus:3.3.1'
+    implementation('org.simpleframework:simple-xml:2.7.1') { exclude group: 'stax', module: 'stax-api' exclude group: 'xpp3', module: 'xpp3' }
+    implementation(ext: 'aar', name: 'dlna-core', group: 'fongmi', version: 'release')
+    leanbackImplementation(ext: 'aar', name: 'dlna-dmr', group: 'fongmi', version: 'release')
+    leanbackImplementation 'androidx.leanback:leanback:1.2.0-alpha04'
+    leanbackImplementation 'com.github.hedzr:android-file-chooser:v1.2.0-final'
+    leanbackImplementation 'me.jessyan:autosize:1.2.1'
+    mobileImplementation(ext: 'aar', name: 'dlna-dmc', group: 'fongmi', version: 'release')
+    mobileImplementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    mobileImplementation 'com.google.android.flexbox:flexbox:3.0.0'
+    mobileImplementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
+    annotationProcessor 'androidx.room:room-compiler:2.6.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+
+    // new add
+    implementation files('libs/Baidu_Mtj_android_4.0.10.9.jar') //已找到混淆配置
+    implementation 'io.github.youth5201314:banner:2.2.3'
+    implementation 'com.sunfusheng:marqueeview:1.3.3' //未找到混淆配置
+    implementation 'com.orhanobut:hawk:2.0.1' //官方仓库未提混淆配置
+    implementation('com.lzy.net:okgo:3.0.4') { //官方注明可以被安全混淆
+        exclude group: 'com.squareup.okhttp3'
+    }
+    //<!--巨量依赖-->
+    implementation files('libs/kssdk-ct-3.3.53-publishRelease-8552b594ff.aar')
+    implementation files('libs/ad_lib.aar')
+    implementation 'com.qq.e.union:union:4.561.1431'
+    implementation 'com.pangle.cn:ads-sdk-pro:5.7.0.6'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.7.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //<!--巨量依赖结束-->
+}

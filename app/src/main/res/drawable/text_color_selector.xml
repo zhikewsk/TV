@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_activated="true" android:color="@color/selected_text_color" />
+    <item android:color="@color/white" /> <!-- 默认状态下的颜色 -->
+</selector>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/play_bg">
+
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="15dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_control_back" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="试看结束!观看完整版需要开通会员"
+            android:textColor="#ffffff"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/intro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="签到可获得积分~积分可兑换会员"
+            android:textColor="#D5D0D0"
+            android:textSize="12sp"
+            tools:ignore="SmallSp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@android:dimen/app_icon_size"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/playAd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_update"
+            android:paddingLeft="15dp"
+            android:paddingTop="6dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="6dp"
+            android:text="解锁特权"
+            android:textColor="#ffffff"
+            android:textSize="13sp"/>
+
+        <TextView
+            android:id="@+id/to_vips"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/equity_center"
+            android:paddingLeft="15dp"
+            android:paddingTop="6dp"
+            android:paddingRight="15dp"
+            android:paddingBottom="6dp"
+            android:text="开通会员"
+            android:textColor="#3D5AFE"
+            android:textSize="13sp" />
+    </LinearLayout>
+</FrameLayout>
