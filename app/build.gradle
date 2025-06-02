@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
 }
+
 //com.fongmi.android.tv
 android {
     namespace 'com.fongmi.android.tv'
@@ -195,5 +196,7 @@ dependencies {
     implementation 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.0.1'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //引力依赖
+    implementation(name: 'yladsdk_v3.6.1.5021', ext: 'aar')
     //<!--巨量依赖结束-->
 }
